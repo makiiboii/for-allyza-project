@@ -36,7 +36,7 @@ export const loveContent = {
     {
       date: 'Silly smiles & giggles',
       title: 'Simple photo booth',
-      description: 'Just a simple photo booth date, but you covering your shy, giggling smile while standing close to me made it one of my favorite memories ever.',
+      description: 'Just a fun, simple photo booth snapshot together. You covering your shy, giggling smile while standing close to me makes this one of my favorite memories ever.',
       label: 'Photo Booth',
       image: '/images/photo-booth.jpg',
     },
@@ -160,7 +160,7 @@ export const loveContent = {
     },
     {
       title: 'Simple photo booth',
-      caption: 'Just a simple photo booth date — your shy giggles behind your hands are my absolute favorite.',
+      caption: 'A fun, simple photo booth snapshot — your shy giggles behind your hands are my absolute favorite.',
       image: '/images/photo-booth.jpg',
     },
     {
