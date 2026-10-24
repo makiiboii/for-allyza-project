@@ -1,0 +1,32 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+  <!-- Soft drop shadow -->
+  <ellipse cx="18" cy="31" rx="10" ry="2.5" fill="rgba(0,0,0,0.12)" />
+  <!-- Fluffy ears -->
+  <ellipse cx="7" cy="18" rx="5.5" ry="8" fill="#f8f4f4" stroke="#e8dede" stroke-width="0.8" transform="rotate(12 7 18)" />
+  <ellipse cx="29" cy="18" rx="5.5" ry="8" fill="#f8f4f4" stroke="#e8dede" stroke-width="0.8" transform="rotate(-12 29 18)" />
+  <!-- Ear inner fluff -->
+  <ellipse cx="7.5" cy="19" rx="3" ry="5.5" fill="#fff" />
+  <ellipse cx="28.5" cy="19" rx="3" ry="5.5" fill="#fff" />
+  <!-- Head base -->
+  <circle cx="18" cy="18" r="12" fill="#ffffff" stroke="#e8dede" stroke-width="0.8" />
+  <!-- Forehead / topknot tuft -->
+  <path d="M15 7 Q18 3 21 7 Q18 9 15 7 Z" fill="#ffffff" stroke="#e8dede" stroke-width="0.6" />
+  <ellipse cx="18" cy="6" rx="3" ry="2" fill="#ffb8cc" /> <!-- cute pink hair clip / bow -->
+  <!-- Cute black eyes with shine -->
+  <circle cx="13" cy="16" r="2.4" fill="#201518" />
+  <circle cx="12.2" cy="15.2" r="0.9" fill="#ffffff" />
+  <circle cx="23" cy="16" r="2.4" fill="#201518" />
+  <circle cx="22.2" cy="15.2" r="0.9" fill="#ffffff" />
+  <!-- Rosy cheeks -->
+  <ellipse cx="10" cy="20" rx="2.5" ry="1.5" fill="#ffb8cc" opacity="0.6" />
+  <ellipse cx="26" cy="20" rx="2.5" ry="1.5" fill="#ffb8cc" opacity="0.6" />
+  <!-- Muzzle fluff -->
+  <ellipse cx="18" cy="21.5" rx="5.5" ry="4" fill="#ffffff" />
+  <!-- Button nose -->
+  <path d="M16.5 19.8 Q18 19 19.5 19.8 Q18 21.2 16.5 19.8 Z" fill="#22181c" />
+  <!-- Happy mouth & tongue -->
+  <path d="M16.8 21.8 Q18 22.8 19.2 21.8" stroke="#22181c" stroke-width="0.7" fill="none" stroke-linecap="round" />
+  <path d="M17.2 22.5 Q18 24.5 18.8 22.5 Z" fill="#ff7096" />
+  <!-- Pointer indicator dot at top-left ear -->
+  <polygon points="2,2 8,2 2,8" fill="#e8577f" />
+</svg>
