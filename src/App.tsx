@@ -267,34 +267,80 @@ function Counter() {
 
 function Story() {
   return (
-    <section className="section section-wrap" id="story">
-      <SectionHeading
-        eyebrow="Our story"
-        title={<>Every love story has <em>a beginning.</em></>}
-        subtitle="A tiny timeline of our little world. More memories to add soon."
-      />
-      <div className="timeline">
-        {loveContent.timeline.map((item, i) => (
-          <motion.article className={i % 2 ? 'timeline-item timeline-right' : 'timeline-item'} key={item.title} {...fadeUp(i * 0.08)}>
-            <div className="timeline-marker">{i + 1}</div>
-            <div className="timeline-card">
-              <span className="timeline-label">{item.label}</span>
-              <span className="timeline-date">{item.date}</span>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-              {item.image ? (
-                <img className="timeline-image" src={item.image} alt={item.title} />
-              ) : (
-                <div className="photo-placeholder timeline-image">
-                  <ImageIcon size={24} strokeWidth={1.6} />
-                  <small>Your photo here</small>
-                </div>
-              )}
-            </div>
-          </motion.article>
-        ))}
+    <section className="section story-section" id="story">
+      <div className="section-wrap story-wrap">
+        <SectionHeading
+          eyebrow="Our story"
+          title={<>Every love story has <em>a beginning.</em></>}
+          subtitle="Our romantic journey, step by step. Filled with real moments, laughs, and pure love."
+        />
+        <div className="story-journey">
+          {loveContent.timeline.map((item, i) => {
+            const isLeftPhoto = i % 2 === 0
+            const hasNext = i < loveContent.timeline.length - 1
+            return (
+              <div key={item.title} className="story-step">
+                <motion.article
+                  className={`story-card ${isLeftPhoto ? 'photo-left' : 'photo-right'}`}
+                  {...fadeUp(0.05)}
+                >
+                  <div className="story-photo-wrap">
+                    {item.image ? (
+                      <img className="story-photo" src={item.image} alt={item.title} loading="lazy" />
+                    ) : (
+                      <div className="photo-placeholder story-photo">
+                        <ImageIcon size={28} strokeWidth={1.6} />
+                        <small>Your photo here</small>
+                      </div>
+                    )}
+                    <span className="story-photo-tag"><FilledHeart size={12} /> {item.label}</span>
+                  </div>
+
+                  <div className="story-content">
+                    <div className="story-kicker">
+                      <span className="story-step-num">Chapter {pad(i + 1)}</span>
+                      <span className="story-pill">{item.label}</span>
+                    </div>
+                    <span className="story-date">{item.date}</span>
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                  </div>
+                </motion.article>
+
+                {hasNext && (
+                  <div
+                    className={`story-bridge ${isLeftPhoto ? 'bridge-left-to-right' : 'bridge-right-to-left'}`}
+                    aria-hidden="true"
+                  >
+                    <svg className="bridge-svg" viewBox="0 0 800 80" preserveAspectRatio="none">
+                      <path
+                        d={isLeftPhoto
+                          ? 'M 220 0 C 220 48, 580 32, 580 80'
+                          : 'M 580 0 C 580 48, 220 32, 220 80'}
+                        fill="none"
+                        stroke="url(#bridge-gradient)"
+                        strokeWidth="3.5"
+                        strokeDasharray="6 6"
+                      />
+                      <defs>
+                        <linearGradient id="bridge-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#ffb8cc" />
+                          <stop offset="50%" stopColor="#e8577f" />
+                          <stop offset="100%" stopColor="#ffb8cc" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    <div className="bridge-heart-node">
+                      <FilledHeart size={13} />
+                    </div>
+                  </div>
+                )}
+              </div>
+            )
+          })}
+        </div>
+        <motion.p className="timeline-end" {...fadeUp()}>and this is only the beginning, Langga...</motion.p>
       </div>
-      <motion.p className="timeline-end" {...fadeUp()}>and this is only the beginning...</motion.p>
     </section>
   )
 }
