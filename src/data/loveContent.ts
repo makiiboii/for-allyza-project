@@ -75,6 +75,13 @@ export const loveContent = {
       label: 'In Love',
       image: '/images/lowkey-inlove.png',
     },
+    {
+      date: 'October 30 & 31',
+      title: 'Birthday dinner & photoshoot',
+      description: 'Our romantic dinner date on October 30, and dressing up for your birthday photoshoot on October 31. Seeing you looking so breathtaking, elegant, and radiant in this dress took my breath away. I love you so much, Langga.',
+      label: 'Birthday Glow',
+      image: '/images/birthday-shoot.jpg',
+    },
   ],
   loveReasons: [
     {
@@ -137,6 +144,11 @@ export const loveContent = {
       answer: 1,
     },
     {
+      question: 'When is Langga\'s special birthday?',
+      options: ['October 15', 'October 31', 'November 1', 'October 25'],
+      answer: 1,
+    },
+    {
       question: 'What is the best part of our story?',
       options: [
         'The perfect photographs',
@@ -148,6 +160,11 @@ export const loveContent = {
     },
   ],
   gallery: [
+    {
+      title: 'Birthday photoshoot',
+      caption: 'Dinner date on October 30 and birthday shoot on October 31. You took my breath away, Langga. I love you so much.',
+      image: '/images/birthday-shoot.jpg',
+    },
     {
       title: 'Our first photo ever',
       caption: 'The very first photo we ever took together in matching white. The day it all started.',
