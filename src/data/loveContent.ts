@@ -92,7 +92,7 @@ export const loveContent = {
     {
       date: 'October 30',
       title: 'Our October 30 dinner',
-      description: 'You were a little sad that night when friends couldn\'t make it, but I held your hand and reminded you that I will always be right here for you. We had your sis catch up with us, and the three of us turned it into such a warm, memorable dinner. You will never be alone, Langga.',
+      description: 'You were a little sad that night when friends couldn\'t make it, but I held your hand and reminded you that I will always be right here for you. We had my sis catch up with us, and the three of us turned it into such a warm, memorable dinner. You will never be alone, Langga.',
       label: 'Always Here',
       image: '/images/october30-dinner.jpg',
     },
@@ -193,7 +193,7 @@ export const loveContent = {
     },
     {
       title: 'October 30 dinner date',
-      caption: 'When you felt sad that night, I reminded you that I am always right by your side. A sweet dinner date with you and your sis.',
+      caption: 'When you felt sad that night, I reminded you that I am always right by your side. A sweet dinner date with you and my sis.',
       image: '/images/october30-dinner.jpg',
     },
     {
