@@ -76,9 +76,16 @@ export const loveContent = {
       image: '/images/lowkey-inlove.png',
     },
     {
-      date: 'October 30 & 31',
-      title: 'Birthday dinner & photoshoot',
-      description: 'Our romantic dinner date on October 30, and dressing up for your birthday photoshoot on October 31. Seeing you looking so breathtaking, elegant, and radiant in this dress took my breath away. I love you so much, Langga.',
+      date: 'October 30',
+      title: 'Our October 30 dinner',
+      description: 'You were a little sad that night when friends couldn\'t make it, but I held your hand and reminded you that I will always be right here for you. We had your sis catch up with us, and the three of us turned it into such a warm, memorable dinner. You will never be alone, Langga.',
+      label: 'Always Here',
+      image: '/images/october30-dinner.jpg',
+    },
+    {
+      date: 'October 31',
+      title: 'Birthday photoshoot',
+      description: 'Dressing up for your special birthday photoshoot on October 31. Seeing you looking so breathtaking, elegant, and radiant in this dress took my breath away. I love you so much, Langga.',
       label: 'Birthday Glow',
       image: '/images/birthday-shoot.jpg',
     },
@@ -160,6 +167,11 @@ export const loveContent = {
     },
   ],
   gallery: [
+    {
+      title: 'October 30 dinner date',
+      caption: 'When you felt sad that night, I reminded you that I am always right by your side. A sweet dinner date with you and your sis.',
+      image: '/images/october30-dinner.jpg',
+    },
     {
       title: 'Birthday photoshoot',
       caption: 'Dinner date on October 30 and birthday shoot on October 31. You took my breath away, Langga. I love you so much.',
