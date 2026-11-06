@@ -69,6 +69,13 @@ export const loveContent = {
       image: '/images/puppy-heart.png',
     },
     {
+      date: 'Cinema detour to arcade',
+      title: 'Our arcade mini toy cars',
+      description: 'We planned on a cinema movie date, but Cinema 1 & 2 were both closed for maintenance! So we pivoted to the arcade, had the best time playing games, and won matching mini toy cars. The sweetest plot twist ever.',
+      label: 'Arcade Date',
+      image: '/images/arcade-cars.jpg',
+    },
+    {
       date: 'Through the camera lens',
       title: 'Us lowkey in love',
       description: 'Framed through the camera screen—the gentle, loving way you look at me when you think no one is watching. Completely, softly, and lowkey in love.',
@@ -167,6 +174,11 @@ export const loveContent = {
     },
   ],
   gallery: [
+    {
+      title: 'Arcade mini toy cars',
+      caption: 'Cinema 1 & 2 were on maintenance, so we went to the arcade and won matching mini toy cars! Best plot twist ever.',
+      image: '/images/arcade-cars.jpg',
+    },
     {
       title: 'October 30 dinner date',
       caption: 'When you felt sad that night, I reminded you that I am always right by your side. A sweet dinner date with you and your sis.',
