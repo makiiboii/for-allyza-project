@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="36" height="36">
+  <!-- Subtle circular soft glow backdrop for crisp visibility on dark & light browser tabs -->
+  <circle cx="18" cy="18" r="17" fill="#ffeaf1" stroke="#ffb8cc" stroke-width="1.2" />
+
+  <!-- Floppy Shih Tzu Ears -->
+  <ellipse cx="7" cy="19" rx="5.5" ry="8.5" fill="#ffffff" stroke="#f0d5de" stroke-width="1" transform="rotate(14 7 19)" />
+  <ellipse cx="29" cy="19" rx="5.5" ry="8.5" fill="#ffffff" stroke="#f0d5de" stroke-width="1" transform="rotate(-14 29 19)" />
+
+  <!-- Fluffy Head Base -->
+  <circle cx="18" cy="18" r="12" fill="#ffffff" stroke="#f0d5de" stroke-width="1" />
+
+  <!-- Cute Pink Bow / Clip -->
+  <ellipse cx="18" cy="7" rx="3.5" ry="2" fill="#ff7096" />
+  <circle cx="18" cy="7" r="1.2" fill="#ffffff" />
+
+  <!-- Fluffy Muzzle -->
+  <ellipse cx="18" cy="21.5" rx="6" ry="4.2" fill="#ffffff" />
+
+  <!-- Big Sparkly Black Eyes -->
+  <circle cx="13" cy="16" r="2.5" fill="#24151a" />
+  <circle cx="12.2" cy="15.2" r="0.9" fill="#ffffff" />
+  <circle cx="23" cy="16" r="2.5" fill="#24151a" />
+  <circle cx="22.2" cy="15.2" r="0.9" fill="#ffffff" />
+
+  <!-- Rosy Cheeks -->
+  <ellipse cx="9.5" cy="20.5" rx="2.5" ry="1.5" fill="#ffaec5" opacity="0.85" />
+  <ellipse cx="26.5" cy="20.5" rx="2.5" ry="1.5" fill="#ffaec5" opacity="0.85" />
+
+  <!-- Button Nose -->
+  <path d="M16.5 19.8 Q18 19 19.5 19.8 Q18 21.4 16.5 19.8 Z" fill="#24151a" />
+
+  <!-- Cheerful Mouth & Tongue -->
+  <path d="M16.8 21.6 Q18 22.4 19.2 21.6" stroke="#24151a" stroke-width="0.8" fill="none" stroke-linecap="round" />
+  <path d="M17.2 22.2 Q18 24.2 18.8 22.2 Z" fill="#ff5c8a" />
+</svg>
