@@ -76,6 +76,13 @@ export const loveContent = {
       image: '/images/arcade-cars.jpg',
     },
     {
+      date: 'Post-arcade cravings',
+      title: 'Cooking comfort food at home',
+      description: 'Playing all those arcade games worked up a serious appetite! We went straight home to cook the spicy noodles and crispy spam you were craving. The coziest, happiest comfort food with you, Langga.',
+      label: 'Home Cooking',
+      image: '/images/cravings-at-home.jpg',
+    },
+    {
       date: 'Through the camera lens',
       title: 'Us lowkey in love',
       description: 'Framed through the camera screen—the gentle, loving way you look at me when you think no one is watching. Completely, softly, and lowkey in love.',
@@ -178,6 +185,11 @@ export const loveContent = {
       title: 'Arcade mini toy cars',
       caption: 'Cinema 1 & 2 were on maintenance, so we went to the arcade and won matching mini toy cars! Best plot twist ever.',
       image: '/images/arcade-cars.jpg',
+    },
+    {
+      title: 'Craving comfort food',
+      caption: 'Starving after playing at the arcade, so we went straight home to cook the noodles and crispy spam she was craving.',
+      image: '/images/cravings-at-home.jpg',
     },
     {
       title: 'October 30 dinner date',
