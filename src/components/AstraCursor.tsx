@@ -1,133 +1,119 @@
-import { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-
-interface TrailParticle {
-  id: number
-  x: number
-  y: number
-  size: number
-  symbol: string
-  color: string
-}
-
-const symbols = ['♥', '♡', '✦', '✧']
-const colors = ['#ff8fb1', '#e8577f', '#ffb8cc', '#ffffff', '#ffd0de']
+import { useEffect, useRef } from 'react'
 
 export default function AstraCursor() {
-  const [pos, setPos] = useState({ x: -100, y: -100 })
-  const [trail, setTrail] = useState<TrailParticle[]>([])
-  const [isHovering, setIsHovering] = useState(false)
-  const [isClicking, setIsClicking] = useState(false)
-  const [isVisible, setIsVisible] = useState(false)
+  const headRef = useRef<HTMLDivElement>(null)
+  const isHoveringRef = useRef(false)
+  const isClickingRef = useRef(false)
+  const trailContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // Only enable on non-touch devices with fine pointers
+    // Disable completely on touchscreens / mobile devices
     if (window.matchMedia('(pointer: coarse)').matches) return
+    if (!headRef.current) return
 
-    let counter = 0
-    let lastTime = 0
+    let mouseX = -100
+    let mouseY = -100
+    let rafId: number
+    let lastTrailTime = 0
+    let isVisible = false
+
+    const symbols = ['♥', '♡', '✦', '✧']
+    const colors = ['#ff8fb1', '#e8577f', '#ffb8cc', '#ffffff', '#ffd0de']
 
     const onMouseMove = (e: MouseEvent) => {
-      setPos({ x: e.clientX, y: e.clientY })
-      if (!isVisible) setIsVisible(true)
+      mouseX = e.clientX
+      mouseY = e.clientY
 
-      const now = performance.now()
-      if (now - lastTime > 65) {
-        lastTime = now
-        const newParticle: TrailParticle = {
-          id: counter++,
-          x: e.clientX + (Math.random() * 14 - 7),
-          y: e.clientY + 12 + Math.random() * 6,
-          size: Math.floor(Math.random() * 6) + 11,
-          symbol: symbols[Math.floor(Math.random() * symbols.length)],
-          color: colors[Math.floor(Math.random() * colors.length)],
-        }
-        setTrail((prev) => [...prev.slice(-18), newParticle])
+      if (!isVisible && headRef.current) {
+        isVisible = true
+        headRef.current.style.opacity = '1'
+        document.body.classList.add('custom-cursor-active')
       }
 
-      // Check if hovering over clickable elements
+      // Check hover on clickable
       const target = e.target as HTMLElement | null
       const clickable = target?.closest('button, a, input, [role="button"]')
-      setIsHovering(!!clickable)
+      isHoveringRef.current = !!clickable
+
+      // Spawn trail particle directly without React state churn
+      const now = performance.now()
+      if (now - lastTrailTime > 65 && trailContainerRef.current) {
+        lastTrailTime = now
+        const p = document.createElement('span')
+        p.className = 'astra-trail-particle'
+        p.textContent = symbols[Math.floor(Math.random() * symbols.length)]
+        p.style.left = `${mouseX + (Math.random() * 12 - 6)}px`
+        p.style.top = `${mouseY + 12 + Math.random() * 6}px`
+        p.style.color = colors[Math.floor(Math.random() * colors.length)]
+        p.style.fontSize = `${Math.floor(Math.random() * 6) + 11}px`
+        trailContainerRef.current.appendChild(p)
+
+        setTimeout(() => {
+          p.remove()
+        }, 650)
+      }
+    }
+
+    // Direct GPU-accelerated translate3d with 0ms input latency
+    const updatePosition = () => {
+      if (headRef.current && isVisible) {
+        const scale = isClickingRef.current ? 0.85 : isHoveringRef.current ? 1.2 : 1
+        const rotate = isHoveringRef.current ? 8 : 0
+        headRef.current.style.transform = `translate3d(${mouseX - 18}px, ${mouseY - 18}px, 0) scale(${scale}) rotate(${rotate}deg)`
+      }
+      rafId = requestAnimationFrame(updatePosition)
     }
 
     const onMouseDown = (e: MouseEvent) => {
-      setIsClicking(true)
-      // Burst of particles on click
-      const burst: TrailParticle[] = Array.from({ length: 7 }, () => ({
-        id: counter++,
-        x: e.clientX + (Math.random() * 24 - 12),
-        y: e.clientY + (Math.random() * 24 - 12),
-        size: Math.floor(Math.random() * 8) + 12,
-        symbol: '♥',
-        color: colors[Math.floor(Math.random() * colors.length)],
-      }))
-      setTrail((prev) => [...prev.slice(-14), ...burst])
+      isClickingRef.current = true
+      if (trailContainerRef.current) {
+        for (let i = 0; i < 5; i++) {
+          const p = document.createElement('span')
+          p.className = 'astra-trail-particle burst'
+          p.textContent = '♥'
+          p.style.left = `${e.clientX + (Math.random() * 20 - 10)}px`
+          p.style.top = `${e.clientY + (Math.random() * 20 - 10)}px`
+          p.style.color = colors[Math.floor(Math.random() * colors.length)]
+          p.style.fontSize = `${Math.floor(Math.random() * 6) + 12}px`
+          trailContainerRef.current.appendChild(p)
+          setTimeout(() => p.remove(), 600)
+        }
+      }
     }
 
-    const onMouseUp = () => setIsClicking(false)
-    const onMouseLeave = () => setIsVisible(false)
+    const onMouseUp = () => {
+      isClickingRef.current = false
+    }
+
+    const onMouseLeave = () => {
+      isVisible = false
+      if (headRef.current) headRef.current.style.opacity = '0'
+      document.body.classList.remove('custom-cursor-active')
+    }
 
     window.addEventListener('mousemove', onMouseMove, { passive: true })
     window.addEventListener('mousedown', onMouseDown)
     window.addEventListener('mouseup', onMouseUp)
     document.addEventListener('mouseleave', onMouseLeave)
-
-    // Clean up old trail particles
-    const cleanupInterval = setInterval(() => {
-      setTrail((prev) => (prev.length > 0 ? prev.slice(1) : prev))
-    }, 120)
+    rafId = requestAnimationFrame(updatePosition)
 
     return () => {
       window.removeEventListener('mousemove', onMouseMove)
       window.removeEventListener('mousedown', onMouseDown)
       window.removeEventListener('mouseup', onMouseUp)
       document.removeEventListener('mouseleave', onMouseLeave)
-      clearInterval(cleanupInterval)
+      cancelAnimationFrame(rafId)
+      document.body.classList.remove('custom-cursor-active')
     }
-  }, [isVisible])
-
-  if (!isVisible) return null
+  }, [])
 
   return (
     <div className="astra-cursor-container" aria-hidden="true">
-      {/* Floating Sparkle & Heart Trail */}
-      <AnimatePresence>
-        {trail.map((p) => (
-          <motion.span
-            key={p.id}
-            className="astra-trail-particle"
-            initial={{ opacity: 0.9, scale: 1, y: 0 }}
-            animate={{ opacity: 0, scale: 0.3, y: 16 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
-            style={{
-              left: p.x,
-              top: p.y,
-              fontSize: `${p.size}px`,
-              color: p.color,
-            }}
-          >
-            {p.symbol}
-          </motion.span>
-        ))}
-      </AnimatePresence>
-
-      {/* Astra (White Shih Tzu) Cursor */}
-      <motion.div
+      <div ref={trailContainerRef} className="astra-trail-container" />
+      <div
+        ref={headRef}
         className="astra-cursor-head"
-        animate={{
-          x: pos.x - 18,
-          y: pos.y - 18,
-          scale: isClicking ? 0.85 : isHovering ? 1.25 : 1,
-          rotate: isHovering ? 8 : 0,
-        }}
-        transition={{
-          type: 'spring',
-          damping: 24,
-          stiffness: 420,
-          mass: 0.25,
-        }}
+        style={{ opacity: 0, willChange: 'transform' }}
       >
         <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
           {/* Subtle glow */}
@@ -188,12 +174,7 @@ export default function AstraCursor() {
           />
           <path d="M17.2 22.2 Q18 24.2 18.8 22.2 Z" fill="#ff5c8a" />
         </svg>
-
-        {/* Tiny Floating "Astra" Label on hover */}
-        {isHovering && (
-          <span className="astra-cursor-badge">astra ♡</span>
-        )}
-      </motion.div>
+      </div>
     </div>
   )
 }
